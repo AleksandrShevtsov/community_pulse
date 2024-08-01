@@ -16,12 +16,14 @@ class QuestionCreate(BaseModel):
 
 
 class QuestionResponse(BaseModel):
+    id: int
     text: str
-    category: Optional[CategoryBase]
+    category_id: Optional[int]
 
     class Config:
         # Указываем Pydantic использовать эти параметры чтобы можно было переносить данные прямо с объекта
-        model_config = {'from_attributes': True}
+        orm_mode = True
+        from_attributes = True
 
 
 class MessageResponse(BaseModel):

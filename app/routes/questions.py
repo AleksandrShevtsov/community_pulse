@@ -10,7 +10,7 @@ questions_bp = Blueprint('questions', __name__, url_prefix='/questions')
 @questions_bp.route('/', methods=['GET'])
 def get_questions():
     questions = Question.query.all()
-    questions_data = [QuestionResponse.model_validate(q) for q in questions]
+    questions_data = [QuestionResponse.from_orm(q).dict() for q in questions]
     return jsonify(questions_data)
 
 
