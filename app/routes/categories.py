@@ -23,7 +23,7 @@ def add_category():
 @categories_bp.route('/', methods=['GET'])
 def get_categories():
     categories = Category.query.all()
-    categories_data = [CategoryBase.model_validate() for c in categories]
+    categories_data = [CategoryBase.from_orm(c).dict() for c in categories]
     return jsonify(categories_data)
 
 

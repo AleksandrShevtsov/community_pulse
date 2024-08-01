@@ -7,7 +7,8 @@ class CategoryBase(BaseModel):
     name: str = Field(..., min_length=2, max_length=100)
 
     class Config:
-        model_config = {'from_attributes': True}
+        orm_mode = True
+        from_attributes = True
 
 
 class QuestionCreate(BaseModel):
